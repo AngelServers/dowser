@@ -1,3 +1,4 @@
 node_modules
 uploads/*
 database/*
+.DS_Store
