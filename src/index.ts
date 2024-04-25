@@ -68,8 +68,10 @@ console.log();
 middleware(app);
 
 // UI
+app.use(express.static(process.cwd() + "/dashboard/dist/"))
 app.get("/", (req, res) => {
-  res.send("Dowser Server");
+  // Load html from /dashboard/dist/index.html
+  res.sendFile(process.cwd() + "/dashboard/dist/index.html");
 });
 
 app.use(express.json());
