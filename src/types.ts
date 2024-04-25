@@ -17,6 +17,7 @@ export interface NodeInfo {
   // ip: string;
   port: string | number;
   version: any;
+  location: string;
 }
 
 export type FileObject = {

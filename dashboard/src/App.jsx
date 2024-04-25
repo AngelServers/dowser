@@ -4,7 +4,7 @@ import axios from "axios";
 
 import MapSelector from "./components/MapSelector";
 
-// axios.defaults.baseURL = "http://localhost:3000/";
+// axios.defaults.baseURL = "http://localhost:13990/";
 
 function App() {
   const [nodeInfo, setNodeInfo] = useState({});
@@ -44,9 +44,11 @@ function App() {
       <div className="grid grid-cols-12 gap-2 mt-2">
         <div className="border-2 border-violet-600 rounded-lg p-5 col-span-8">
           <MapSelector
-            selectedCountries={savedNodes.map(
-              (node) => node?.doc?.location || null
-            )}
+            selectedCountries={
+              savedNodes
+                ? savedNodes.map((node) => node?.doc?.location || null)
+                : []
+            }
           />
         </div>
 
@@ -60,7 +62,6 @@ function App() {
               >
                 <div>
                   <h3>{node.doc.nodeName}</h3>
-                  <p>{node.doc.url}</p>
                 </div>
                 <div className="flex items-center">
                   <button
@@ -99,20 +100,21 @@ function App() {
                 className="border border-violet-600 rounded-lg p-1 mb-2"
               >
                 <h3>{node.id}</h3>
-                {Object.keys(node.doc.files).map((fileId) => {
-                  const file = node.doc.files[fileId];
-                  return (
-                    <div
-                      key={fileId}
-                      className="border border-violet-600 rounded-lg p-1 mb-2 text-xs"
-                    >
-                      <h4>{fileId}</h4>
-                      <p>{file.name}</p>
-                      <p>{file.size}</p>
-                      <p>{file.path}</p>
-                    </div>
-                  );
-                })}
+                {node.doc.files &&
+                  Object.keys(node.doc.files).map((fileId) => {
+                    const file = node.doc.files[fileId];
+                    return (
+                      <div
+                        key={fileId}
+                        className="border border-violet-600 rounded-lg p-1 mb-2 text-xs"
+                      >
+                        <h4>{fileId}</h4>
+                        <p>{file.name}</p>
+                        <p>{file.size}</p>
+                        <p>{file.path}</p>
+                      </div>
+                    );
+                  })}
               </div>
             );
           })}

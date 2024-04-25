@@ -54,6 +54,7 @@ const cleanNodeInfo = (nodeInfo: NodeInfo) => {
     // ip: nodeInfo.ip,
     port: nodeInfo.port,
     version: nodeInfo.version,
+    location: nodeInfo.location,
   };
 };
 
