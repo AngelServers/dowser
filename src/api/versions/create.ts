@@ -2,6 +2,8 @@ import { DowserRequest, FileObject } from "@/types";
 
 import { Express } from "express";
 
+import { nodeInfo } from "@/index";
+
 module.exports = async ({ req, res, db }: DowserRequest) => {
   const { versions } = db;
   const files = req.files;
@@ -24,6 +26,7 @@ module.exports = async ({ req, res, db }: DowserRequest) => {
     parsedFiles[file.fieldname] = {
       name: file.originalname,
       path: file.path,
+      urL: `${nodeInfo.url}${file.path}`,
       filename: file.filename,
       mimetype: file.mimetype,
       encoding: file.encoding,

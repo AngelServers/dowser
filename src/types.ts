@@ -22,6 +22,7 @@ export interface NodeInfo {
 export type FileObject = {
   name: string;
   path: string;
+  urL: string;
   filename: string;
   mimetype: string;
   encoding: string;

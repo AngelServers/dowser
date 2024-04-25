@@ -43,11 +43,11 @@ const upload = multer({ storage: storage });
 // Server
 const app = express();
 
-require('os').hostname()
+require("os").hostname();
 
 export const nodeInfo = {
   nodeName: process.env.NODE_NAME || "",
-  url: process.env.URL || `http://${require('os').hostname()}/`,
+  url: process.env.URL || `http://${require("os").hostname()}/`,
   port: process.env.PORT || 3000,
   version: require("../package.json").version,
 };
@@ -69,7 +69,7 @@ console.log();
 middleware(app);
 
 // UI
-app.use(express.static(process.cwd() + "/dashboard/dist/"))
+app.use(express.static(process.cwd() + "/dashboard/dist/"));
 app.get("/", (req, res) => {
   // Load html from /dashboard/dist/index.html
   res.sendFile(process.cwd() + "/dashboard/dist/index.html");
@@ -94,8 +94,6 @@ app.listen(nodeInfo.port, () => {
   console.log(
     green(`  Server is running at ${blue(`http://localhost:${nodeInfo.port}`)}`)
   );
-  console.log(
-    green(`  Server is running at ${blue(`${nodeInfo.url}:${nodeInfo.port}`)}`)
-  );
+  console.log(green(`  Server is running at ${blue(nodeInfo.url)}`));
   console.log();
 });
