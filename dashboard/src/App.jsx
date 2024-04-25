@@ -43,7 +43,11 @@ function App() {
 
       <div className="grid grid-cols-12 gap-2 mt-2">
         <div className="border-2 border-violet-600 rounded-lg p-5 col-span-8">
-          <MapSelector selectedCountries={["de"]} />
+          <MapSelector
+            selectedCountries={savedNodes.map(
+              (node) => node?.doc?.location || null
+            )}
+          />
         </div>
 
         <div className="border-2 border-violet-600 rounded-lg p-5 col-span-4">

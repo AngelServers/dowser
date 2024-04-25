@@ -50,6 +50,7 @@ export const nodeInfo = {
   url: process.env.URL || `http://${require("os").hostname()}/`,
   port: process.env.PORT || 3000,
   version: require("../package.json").version,
+  location: process.env.LOCATION || "",
 };
 
 console.log(green(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"));
