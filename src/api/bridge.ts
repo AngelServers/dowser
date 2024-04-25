@@ -9,7 +9,7 @@ const cleanNodeInfo = (nodeInfo: NodeInfo) => {
   return {
     nodeName: nodeInfo.nodeName,
     url: nodeInfo.url,
-    ip: nodeInfo.ip,
+    // ip: nodeInfo.ip,
     port: nodeInfo.port,
     version: nodeInfo.version,
   };
