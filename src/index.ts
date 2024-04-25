@@ -12,15 +12,24 @@ if (!require("fs").existsSync("database")) {
   require("fs").mkdirSync("database");
 }
 
-// Database
+import express, { Express, Request, Response } from "express";
+import multer from "multer";
 import PouchDB from "pouchdb";
-const db = {
-  versions: new PouchDB("database/versions"),
-  nodes: new PouchDB("database/nodes"),
+
+import middleware from "./config/middleware";
+import bridge from "./api/bridge";
+import controllers from "./api/controllers";
+
+import Cron from "./config/cron";
+Cron();
+
+// Database
+export const db = {
+  versions: new PouchDB("./database/versions"),
+  nodes: new PouchDB("./database/nodes"),
 };
 
 // Storage
-import multer from "multer";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
@@ -32,10 +41,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Server
-import express, { Express, Request, Response } from "express";
 const app = express();
 
-const nodeInfo = {
+export const nodeInfo = {
   nodeName: process.env.NODE_NAME || "",
   url: process.env.URL || "http://localhost/",
   ip: process.env.IP || "",
@@ -57,7 +65,6 @@ console.log("   " + green(` ▸ Version:   `) + "   " + nodeInfo.version);
 console.log();
 
 // --- Middleware ---
-import middleware from "./config/middleware";
 middleware(app);
 
 // UI
@@ -68,11 +75,9 @@ app.get("/", (req, res) => {
 app.use(express.json());
 
 // Bridge
-import bridge from "./api/bridge";
-bridge(app, db, upload, nodeInfo);
+bridge(app);
 
 // --- Controllers ----
-import controllers from "./api/controllers";
 controllers(app, db, upload, nodeInfo);
 
 // Not found
