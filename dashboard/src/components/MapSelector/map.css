@@ -1,10 +1,10 @@
 .svg-map__location {
-  fill: #bbb;
+  fill: #444;
 }
 
 .svg-map__location:focus,
 .svg-map__location:hover {
-  fill: #bbb;
+  fill: #444;
   outline: 0;
 }
 
