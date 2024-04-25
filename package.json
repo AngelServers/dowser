@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "cd dashboard && npm i && npm run build && cd ../ && tsc",
+    "build": "git pull && cd dashboard && npm i --legacy-peer-deps && npm run build && cd ../ && tsc",
     "clean-db": "rm -rf database"
   },
   "repository": {
