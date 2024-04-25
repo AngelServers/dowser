@@ -14,7 +14,7 @@ export interface DB {
 export interface NodeInfo {
   nodeName: string;
   url: string;
-  ip: string;
+  // ip: string;
   port: string | number;
   version: any;
 }

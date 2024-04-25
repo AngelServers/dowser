@@ -43,10 +43,11 @@ const upload = multer({ storage: storage });
 // Server
 const app = express();
 
+require('os').hostname()
+
 export const nodeInfo = {
   nodeName: process.env.NODE_NAME || "",
-  url: process.env.URL || "http://localhost/",
-  ip: process.env.IP || "",
+  url: process.env.URL || `http://${require('os').hostname()}/`,
   port: process.env.PORT || 3000,
   version: require("../package.json").version,
 };
@@ -59,7 +60,7 @@ console.log(green(" ┗━━━━━━━━━━━━━━━━━━━
 console.log();
 console.log("   " + green(` ▸ Node Name: `) + "   " + nodeInfo.nodeName);
 console.log("   " + green(` ▸ Url:       `) + "   " + nodeInfo.url);
-console.log("   " + green(` ▸ Ip:        `) + "   " + nodeInfo.ip);
+// console.log("   " + green(` ▸ Ip:        `) + "   " + nodeInfo.ip);
 console.log("   " + green(` ▸ Port:      `) + "   " + nodeInfo.port);
 console.log("   " + green(` ▸ Version:   `) + "   " + nodeInfo.version);
 console.log();
