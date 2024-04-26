@@ -2,7 +2,7 @@ import { DowserRequest, FileObject } from "@/types";
 
 import { Express } from "express";
 
-import { nodeInfo } from "@/index";
+import { nodeInfo } from "../../index";
 
 module.exports = async ({ req, res, db }: DowserRequest) => {
   const { versions } = db;

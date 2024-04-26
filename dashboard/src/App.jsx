@@ -4,7 +4,11 @@ import axios from "axios";
 
 import MapSelector from "./components/MapSelector";
 
-// axios.defaults.baseURL = "http://localhost:13990/";
+// If node development
+// eslint-disable-next-line no-undef
+if (process.env.NODE_ENV === "development") {
+  axios.defaults.baseURL = "http://angelzimmermann.de:13990";
+}
 
 function App() {
   const [nodeInfo, setNodeInfo] = useState({});
@@ -42,7 +46,7 @@ function App() {
       </div>
 
       <div className="grid grid-cols-12 gap-2 mt-2">
-        <div className="border-2 border-violet-600 rounded-lg p-5 col-span-8">
+        <div className="border-2 border-violet-600 rounded-lg p-5 col-span-12 md:col-span-8">
           <MapSelector
             selectedCountries={
               savedNodes
@@ -52,7 +56,7 @@ function App() {
           />
         </div>
 
-        <div className="border-2 border-violet-600 rounded-lg p-5 col-span-4">
+        <div className="border-2 border-violet-600 rounded-lg p-5 col-span-12 md:col-span-4">
           <h2 className="text-lg">Saved Nodes</h2>
           {savedNodes.map((node) => {
             return (
@@ -90,7 +94,7 @@ function App() {
           })}
         </div>
 
-        <div className="border-2 border-violet-600 rounded-lg p-5 col-span-8">
+        <div className="border-2 border-violet-600 rounded-lg p-5 col-span-12 md:col-span-8">
           <h2 className="text-lg">Versions</h2>
           {savedVersions.map((node) => {
             console.log(node);
