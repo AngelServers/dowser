@@ -27,9 +27,10 @@ const createOrUpdateNode = (data: NodeInfo) => {
 };
 
 const createOrUpdateVersion = (data: any) => {
+  console.log(data._id);
   return db.versions
     .get(data._id)
-    .then(function (doc) {
+    .then((doc) => {
       return db.versions.put({
         _id: data._id,
         _rev: doc._rev,
@@ -152,6 +153,12 @@ export default (app: Express) => {
       });
 
     res.send(nodes);
+  });
+
+  app.get("/bridge/sync", async (req, res) => {
+    console.log(bold(blue(" ▸ Syncing")));
+
+    startConnectionFlow();
   });
 
   // Subscribe to other nodes
