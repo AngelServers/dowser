@@ -26,7 +26,7 @@ module.exports = async ({ req, res, db }: DowserRequest) => {
     parsedFiles[file.fieldname] = {
       name: file.originalname,
       path: file.path,
-      urL: `${nodeInfo.url}${file.path}`,
+      urL: `${nodeInfo.url}/${file.path}`,
       filename: file.filename,
       mimetype: file.mimetype,
       encoding: file.encoding,

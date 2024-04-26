@@ -28,10 +28,10 @@ const createOrUpdateNode = (data: NodeInfo) => {
 
 const createOrUpdateVersion = (data: any) => {
   return db.versions
-    .get(data.id)
+    .get(data._id)
     .then(function (doc) {
       return db.versions.put({
-        _id: data.id,
+        _id: data._id,
         _rev: doc._rev,
         ...data,
       });
@@ -41,7 +41,7 @@ const createOrUpdateVersion = (data: any) => {
     })
     .catch(() => {
       return db.versions.put({
-        _id: data.id,
+        _id: data._id,
         ...data,
       });
     });
@@ -74,7 +74,7 @@ export const fetchVersions = async () => {
       .then((res) => {
         // Save gotten versions
         res.data.forEach((version: any) => {
-          createOrUpdateVersion(version).then(() => {
+          createOrUpdateVersion(version.doc).then(() => {
             console.log(magenta(" ▸ Versions added to database"));
           });
         });
